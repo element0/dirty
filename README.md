@@ -2,6 +2,11 @@
 
 `dirtydir.cgi` recursively expands a directory tree into HTML.
 
+## dependencies ##
+
+/bin/bash with "=~" regex functionality.  tested with 4.3.30 on Debian.
+
+
 ## what it does ##
 
 Say you structure your content like so:
