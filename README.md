@@ -14,7 +14,7 @@ Say you structure your content like so:
     fruit_of_the_month/
       apples.html
       bannanas.html
-      cocain.html
+      goji.html
     
 if you're using jQuery put this in your pipe and smoke it:
 
@@ -29,12 +29,11 @@ And this HTML will be cranked into `your_update_function()`:
       <dir class="dirtydirent" id="fruit_of_the_month/bananas.html">
           wild, raw, unfiltered contents of the 'bananas.html'
       </dir>
-      <dir class="dirtydirent" id="fruit_of_the_month/cocain.html">
+      <dir class="dirtydirent" id="fruit_of_the_month/goji.html">
           it's party time.
       </dir>
     </dir>
  
-(And if you're wondering: No. I've never even touched the stuff -- and I don't plan on trying.  I'm just in a Slim Shady kind'a mood, man.)
 
 ## Installation ##
 
@@ -43,13 +42,29 @@ It's currently written in bash (oooh, oh so sexy.)  and it needs to be installed
     sitedir/
       index.html  <-- your file
       dirtydir.cgi
-      cgi/
+      dirtydirpage.cgi
+      bin/
         dir-to-html.sh
-        dirtywrap.cgi
       etc/
         dirtydir.conf
       css/
         dirtydir.css
+      example/
+      	...
+
+`dirtydirpage.cgi` is just to test it as a stand-alone html page.  you should move `dirtydirpage.cgi` into `bin/` if you don't need it. 
+
+`example/` should be deleted.  it's just there to test.  point your browser at:
+	
+	sitedir/dirtydirpage.cgi?example
+
+The CSS is bare bones.
+
+
+## Reserved Metafiles ##
+
+Metafiles start with `.` or `_` and are at present all ignnored except for `_header.html` which is inserted first into the output before a directory's contents.
+
 
 ## Configuration ##
 
@@ -58,4 +73,7 @@ It's currently written in bash (oooh, oh so sexy.)  and it needs to be installed
     DIRCLASS="dirtydir"
     DIRENTCLASS="dirtydirent"
 
-`cgi/dirtydir.sh` is where the html divs are constructed.  Pretty self explainitory.  You can hack it.
+    HEADERCLASS="dirtydir-header"
+    HEADERFILE="_header.html"
+
+Also `cgi/dirtydir.sh` is where the html divs are constructed.  Pretty self explainitory.
