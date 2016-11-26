@@ -41,14 +41,14 @@ It's currently written in bash (oooh, oh so sexy.)  and it needs to be installed
 
     sitedir/
       index.html  <-- your file
-      dirtydir.cgi
-      dirtydirpage.cgi
+      dirty.cgi
+      dirtywebpg.cgi
       bin/
         dir-to-html.sh
       etc/
-        dirtydir.conf
+        dirty.conf
       css/
-        dirtydir.css
+        dirty.css
       example/
       	...
 
@@ -56,7 +56,7 @@ It's currently written in bash (oooh, oh so sexy.)  and it needs to be installed
 
 `example/` should be deleted.  it's just there to test.  point your browser at:
 	
-	sitedir/dirtydirpage.cgi?example
+	sitedir/dirtywebpg.cgi?example
 
 The CSS is bare bones.
 
@@ -68,7 +68,7 @@ Metafiles start with `.` or `_` and are at present all ignnored except for `_hea
 
 ## Configuration ##
 
-`etc/dirtydir.conf`
+`etc/dirty.conf`
 
     DIRCLASS="dirtydir"
     DIRENTCLASS="dirtydirent"
@@ -76,4 +76,4 @@ Metafiles start with `.` or `_` and are at present all ignnored except for `_hea
     HEADERCLASS="dirtydir-header"
     HEADERFILE="_header.html"
 
-Also `cgi/dirtydir.sh` is where the html divs are constructed.  Pretty self explainitory.
+Also `cgi/dirty.sh` is where the html divs are constructed.  Pretty self explainitory.
