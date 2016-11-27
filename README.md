@@ -1,6 +1,6 @@
-# dirtydir
+# franz
 
-`dirtydir.cgi` recursively expands a directory tree into HTML.
+`franz.cgi` recursively expands a directory tree into HTML.
 
 ## dependencies ##
 
@@ -16,20 +16,20 @@ Say you structure your content like so:
       bannanas.html
       goji.html
     
-if you're using jQuery put this in your pipe and smoke it:
+if you're using jQuery, put this in your pipe and smoke it:
 
-    $.get("dirtydir.cgi?fruit_of_the_month", your_update_function );
+    $.get("franz.cgi?fruit_of_the_month", your_update_function );
     
 And this HTML will be cranked into `your_update_function()`:
 
-    <dir class="dirtydir" id="fruit_of_the_month">
-      <dir class="dirtydirent" id="fruit_of_the_month/apples.html">
+    <dir class="franz-list" id="fruit_of_the_month">
+      <dir class="franz-list-item" id="fruit_of_the_month/apples.html">
           wild, raw, unfiltered contents of the 'apples.html'
       </dir>
-      <dir class="dirtydirent" id="fruit_of_the_month/bananas.html">
+      <dir class="franz-list-item" id="fruit_of_the_month/bananas.html">
           wild, raw, unfiltered contents of the 'bananas.html'
       </dir>
-      <dir class="dirtydirent" id="fruit_of_the_month/goji.html">
+      <dir class="franz-list-item" id="fruit_of_the_month/goji.html">
           it's party time.
       </dir>
     </dir>
@@ -37,43 +37,54 @@ And this HTML will be cranked into `your_update_function()`:
 
 ## Installation ##
 
-It's currently written in bash (oooh, oh so sexy.)  and it needs to be installed relative to the webpage like this:
+It's currently written in bash (oh so sexy) and it needs to be installed relative to the webpage like this:
 
     sitedir/
       index.html  <-- your file
-      dirty.cgi
-      dirtywebpg.cgi
+      franz.cgi
+      franzpage.cgi
       bin/
         dir-to-html.sh
       etc/
-        dirty.conf
+        franz.conf
       css/
-        dirty.css
+        franz.css
       example/
       	...
 
-`dirtydirpage.cgi` is just to test it as a stand-alone html page.  you should move `dirtydirpage.cgi` into `bin/` if you don't need it. 
+`franzpage.cgi` is just to test it as a stand-alone html page.  you should move `franzpage.cgi` into `bin/` (or delete it) if you don't need it. 
 
 `example/` should be deleted.  it's just there to test.  point your browser at:
 	
-	sitedir/dirtywebpg.cgi?example
+	sitedir/franzpage.cgi?example
 
-The CSS is bare bones.
+The CSS is just a starter skeleton.
 
 
 ## Reserved Metafiles ##
 
-Metafiles start with `.` or `_` and are at present all ignnored except for `_header.html` which is inserted first into the output before a directory's contents.
+Metafiles start with `.` or `_` and are ignored except for `_header.html` which is inserted into the output before the list contents.
 
 
 ## Configuration ##
 
-`etc/dirty.conf`
+`etc/franz.conf`
 
-    DIRCLASS="dirtydir"
-    DIRENTCLASS="dirtydirent"
+    # CSS classes
 
-    HEADERCLASS="dirtydir-header"
+    DIRCLASS="franz-list"
+    DIRENTCLASS="franz-list-item"
+
     HEADERFILE="_header.html"
+    HEADERCLASS="franz-list-header"
 
-Also `cgi/dirty.sh` is where the html divs are constructed.  Pretty self explainitory.
+    DIRHEAD_FORE=""
+    DIRHEAD_AFT=""
+
+    DIRENT_HEAD_FORE=""
+    DIRENT_HEAD_AFT=""
+
+## Support Files ##
+
+`bin/dir-to-html.sh` is where the html output is constructed.
+

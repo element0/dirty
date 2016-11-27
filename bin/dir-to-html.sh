@@ -1,18 +1,30 @@
 #!/bin/bash
 
-if [ -e "etc/dirtydir.conf" ]
+CONFIGFILE="etc/franz.conf"
+
+if [ -e "$CONFIGFILE" ]
 then
-	source etc/dirtydir.conf
+	source "$CONFIGFILE"
 fi
 
 function produce_dir_head_html ( ) {
 	echo "<div class=\"$DIRCLASS\" id=\"$1\">"
+	
+	if [ -n "$DIRHEAD_FORE" ]
+	then
+		echo "$DIRHEAD_FORE"
+	fi
 
 	if [ -f "$1/$HEADERFILE" ]
 	then
 		echo "<div class=\"$HEADERCLASS\" id=\"$1/$HEADERFILE\">"
 		cat "$1/$HEADERFILE"
 		echo "</div>"
+	fi
+	
+	if [ -n "$DIRHEAD_AFT" ]
+	then
+		echo "$DIRHEAD_AFT"
 	fi
 }
 
