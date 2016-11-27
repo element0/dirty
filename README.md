@@ -1,4 +1,4 @@
-# franz
+# franz lists
 
 `franz.cgi` recursively expands a directory tree into HTML.
 
