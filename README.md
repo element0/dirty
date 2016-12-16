@@ -1,4 +1,4 @@
-# franz lists
+# franz
 
 `franz.cgi` recursively expands a directory tree into HTML.
 
@@ -9,38 +9,38 @@
 
 ## what it does ##
 
-Say you structure your content like so:
+Say you structure your directory like so:
 
     fruit_of_the_month/
       apples.html
       bannanas.html
       goji.html
-    
-if you're using jQuery, put this in your pipe and smoke it:
+ 
+Then access the directory with `franz`
 
-    $.get("franz.cgi?fruit_of_the_month", your_update_function );
+    franz.cgi?fruit_of_the_month
     
-And this HTML will be cranked into `your_update_function()`:
+And this HTML will be generated:
 
     <dir class="franz-list" id="fruit_of_the_month">
       <dir class="franz-list-item" id="fruit_of_the_month/apples.html">
-          wild, raw, unfiltered contents of the 'apples.html'
+          contents of 'apples.html'
       </dir>
       <dir class="franz-list-item" id="fruit_of_the_month/bananas.html">
-          wild, raw, unfiltered contents of the 'bananas.html'
+          contents of 'bananas.html'
       </dir>
       <dir class="franz-list-item" id="fruit_of_the_month/goji.html">
-          it's party time.
+          contents of 'goji.html'
       </dir>
     </dir>
  
 
 ## Installation ##
 
-It's currently written in bash (oh so sexy) and it needs to be installed relative to the webpage like this:
+It must be installed relative to the webpage like this:
 
     sitedir/
-      index.html  <-- your file
+      index.html
       franz.cgi
       franzpage.cgi
       bin/
@@ -58,19 +58,24 @@ It's currently written in bash (oh so sexy) and it needs to be installed relativ
 	
 	sitedir/franzpage.cgi?example
 
-The CSS is just a starter skeleton.
+The CSS is skeleton.
+
+
+## Support Files ##
+
+`bin/dir-to-html.sh` is where the actual html output is constructed.
 
 
 ## Reserved Metafiles ##
 
-Metafiles start with `.` or `_` and are ignored except for `_header.html` which is inserted into the output before the list contents.
+`_header.html` is inserted into the output before the list contents.
+
+Other files that start with `.` or `_` are ignored.
 
 
 ## Configuration ##
 
 `etc/franz.conf`
-
-    # CSS classes
 
     DIRCLASS="franz-list"
     DIRENTCLASS="franz-list-item"
@@ -84,7 +89,4 @@ Metafiles start with `.` or `_` and are ignored except for `_header.html` which 
     DIRENT_HEAD_FORE=""
     DIRENT_HEAD_AFT=""
 
-## Support Files ##
-
-`bin/dir-to-html.sh` is where the html output is constructed.
 
